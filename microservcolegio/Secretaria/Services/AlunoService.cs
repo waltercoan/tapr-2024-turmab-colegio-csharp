@@ -19,8 +19,11 @@ public class AlunoService : IAlunoService
         return listaAlunos;
     }
 
-    public Task<Aluno> SaveAsync(Aluno aluno)
+    public async Task<Aluno> SaveAsync(Aluno aluno)
     {
-        throw new NotImplementedException();
+        await this._dbContext.AddAsync(aluno);
+        await this._dbContext.SaveChangesAsync();
+        
+        return aluno;
     }
 }

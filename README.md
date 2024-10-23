@@ -46,6 +46,10 @@ sudo cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
 ```
 sudo update-ca-certificates
 ```
+
+1) Abrir a extensão do docker e startar o container do cosmosdb
+2) menu de hamburguer -> arquivo -> preferencias -> configurações,  procurar por http.proxyStrictSSL e desabilitar a opção
+
 ### IMPORTANTE: nas configurações do CodeSpace desabilitar a opção http.proxyStrictSSL
 
 ### Extensão do VSCode
@@ -60,3 +64,9 @@ AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJI
 
 ### Particionamento
 [Partitioning](https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning-overview?wt.mc_id=AZ-MVP-5003638)
+
+### Dependencias
+```
+dotnet add package Azure.Identity
+dotnet add package Microsoft.EntityFrameworkCore.Cosmos
+```
