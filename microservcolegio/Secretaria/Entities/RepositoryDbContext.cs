@@ -43,7 +43,9 @@ public class RepositoryDbContext : DbContext
             .HasNoDiscriminator()
             .Property(p => p.id)
             .HasValueGenerator<GuidValueGenerator>()
-            .IsRequired(true);
+            .IsRequired(true)
+            ;
+
 
         
 
