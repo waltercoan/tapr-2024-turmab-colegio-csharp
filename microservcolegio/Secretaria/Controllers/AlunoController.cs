@@ -43,5 +43,16 @@ public class AlunoController : ControllerBase
         }
         return Results.Ok(aluno);
     }
+    [HttpDelete("{id}")]
+    public async Task<IResult> Delete(String id){
+        if(id.Equals(String.Empty)){
+            return Results.BadRequest();
+        }
+        var aluno = await _service.DeleteAsync(id);
+        if(aluno != null){
+            return Results.Ok(aluno);
+        }
+        return Results.NotFound();
+    }
 
 }
