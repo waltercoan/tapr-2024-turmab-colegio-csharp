@@ -26,4 +26,24 @@ public class AlunoService : IAlunoService
         
         return aluno;
     }
+    public async Task<Aluno> UpdateAsync(String id, Aluno aluno){
+        var alunoAntigo = 
+            await this._dbContext.Alunos.Where(a => a.id.Equals(new Guid(id))).FirstOrDefaultAsync();
+        if(alunoAntigo != null){
+            alunoAntigo.nome = aluno.nome;
+            await this._dbContext.SaveChangesAsync();
+            return alunoAntigo;
+        }
+        return null;
+    }
+    public async Task<Aluno> DeleteAsync(String id){
+        var alunoAntigo = 
+                    await this._dbContext.Alunos.Where(a => a.id.Equals(new Guid(id))).FirstOrDefaultAsync();
+        if(alunoAntigo != null){
+            this._dbContext.Remove(alunoAntigo);
+            await this._dbContext.SaveChangesAsync();
+            return alunoAntigo;
+        }
+        return null;
+    }
 }

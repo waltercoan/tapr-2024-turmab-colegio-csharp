@@ -30,4 +30,18 @@ public class AlunoController : ControllerBase
 
         return Results.Ok(alunoSalvo);
     }
+
+    [HttpPut("{id}")]
+    public async Task<IResult> Put(String id, 
+                [FromBody] Aluno aluno){
+        if(aluno == null || id.Equals(String.Empty)){
+            return Results.BadRequest();
+        }
+        aluno = await _service.UpdateAsync(id, aluno);
+        if(aluno == null){
+            return Results.NotFound();
+        }
+        return Results.Ok(aluno);
+    }
+
 }
