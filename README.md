@@ -498,3 +498,33 @@ dapr publish --publish-app-id tapr-2024-NOMEDOMICROSERVICO-dotnet --pubsub servi
 ```
 git rm -r --cached .
 ```
+
+### .vscode/launch.json
+```
+{
+    "configurations": [
+    {
+        "name": ".NET Core Launch (web)",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "dotnet: build", 
+        "program": "${workspaceFolder}/<nomedoprojeto>/bin/Debug/net8.0/<nomedoprojeto>.dll",
+        "args": [],
+        "cwd": "${workspaceFolder}",
+        "stopAtEntry": false,
+        "serverReadyAction": {
+            "action": "openExternally",
+            "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+        },
+        "env": {
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "CosmosDBDBName": "<nome_banco>",
+            "CosmosDBURL": "<conn_string>"
+        },
+        "sourceFileMap": {
+            "/Views": "${workspaceFolder}/Views"
+        }
+    }
+    ]
+}
+```

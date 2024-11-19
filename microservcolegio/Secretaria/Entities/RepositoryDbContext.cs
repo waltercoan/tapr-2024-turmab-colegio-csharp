@@ -25,10 +25,10 @@ public class RepositoryDbContext : DbContext
             cosmosOptionsAction: options =>
             {
                 options.ConnectionMode(ConnectionMode.Gateway);
-                options.HttpClientFactory(() => new HttpClient(new HttpClientHandler()
+                /*options.HttpClientFactory(() => new HttpClient(new HttpClientHandler()
                 {
                     ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
-                }));
+                }));*/
             }
 
         );
@@ -36,6 +36,7 @@ public class RepositoryDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        
         modelBuilder.Entity<Aluno>()
             .ToContainer("aluno")
             .HasPartitionKey(p => p.id)
@@ -43,8 +44,7 @@ public class RepositoryDbContext : DbContext
             .HasNoDiscriminator()
             .Property(p => p.id)
             .HasValueGenerator<GuidValueGenerator>()
-            .IsRequired(true)
-            ;
+            .IsRequired(true);
 
 
         
